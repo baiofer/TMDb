@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		028192DB1F93BC23003D54E7 /* DetailNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028192DA1F93BC23003D54E7 /* DetailNavigator.swift */; };
+		028192DD1F93C177003D54E7 /* PhoneDetailNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028192DC1F93C177003D54E7 /* PhoneDetailNavigator.swift */; };
 		02E9271D1F92102A00A33739 /* AppAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E9271C1F92102A00A33739 /* AppAssembly.swift */; };
 		992D27B81F7FFCA600BA79DE /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992D27B71F7FFCA600BA79DE /* DetailPresenter.swift */; };
 		992D27BB1F7FFD5E00BA79DE /* DetailSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992D27BA1F7FFD5E00BA79DE /* DetailSection.swift */; };
@@ -144,6 +146,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		028192DA1F93BC23003D54E7 /* DetailNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNavigator.swift; sourceTree = "<group>"; };
+		028192DC1F93C177003D54E7 /* PhoneDetailNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneDetailNavigator.swift; sourceTree = "<group>"; };
 		02E9271C1F92102A00A33739 /* AppAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembly.swift; sourceTree = "<group>"; };
 		992D27B71F7FFCA600BA79DE /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		992D27BA1F7FFD5E00BA79DE /* DetailSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSection.swift; sourceTree = "<group>"; };
@@ -263,6 +267,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		028192D91F93B9F7003D54E7 /* Navigators */ = {
+			isa = PBXGroup;
+			children = (
+				028192DA1F93BC23003D54E7 /* DetailNavigator.swift */,
+				028192DC1F93C177003D54E7 /* PhoneDetailNavigator.swift */,
+			);
+			path = Navigators;
+			sourceTree = "<group>";
+		};
 		992D27B91F7FFD1F00BA79DE /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -457,6 +470,7 @@
 		99A4652A1F7CCF5B007F3B5B /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				028192D91F93B9F7003D54E7 /* Navigators */,
 				998AD7DD1F7FF75900D3A222 /* DI */,
 				992D27B91F7FFD1F00BA79DE /* Domain */,
 				99A4652B1F7CCF66007F3B5B /* Presentation */,
@@ -806,12 +820,14 @@
 				99B9A34A1F74181A004F883E /* Configuration.swift in Sources */,
 				99A4653D1F7CE3B4007F3B5B /* PosterStripView.swift in Sources */,
 				993F1E801F7A9E2E004FE33B /* Person.swift in Sources */,
+				028192DD1F93C177003D54E7 /* PhoneDetailNavigator.swift in Sources */,
 				99C5C91A1F7B92D00038688F /* Genre.swift in Sources */,
 				99CA33E91F7B9E4700F77335 /* FeaturedViewController.swift in Sources */,
 				99A465311F7CD245007F3B5B /* DetailHeaderView.swift in Sources */,
 				997A44201F7AA4110094E928 /* UITableView+Reusable.swift in Sources */,
 				997A442A1F7AABD10094E928 /* ImageLoadingAssembly.swift in Sources */,
 				997A441E1F7AA4110094E928 /* NibLoadableView.swift in Sources */,
+				028192DB1F93BC23003D54E7 /* DetailNavigator.swift in Sources */,
 				9943B67F1F7BFF0300D46C90 /* FeaturedPresenter.swift in Sources */,
 				997A44261F7AA9930094E928 /* SearchAssembly.swift in Sources */,
 				998AD7DF1F7FF76800D3A222 /* DetailAssembly.swift in Sources */,
@@ -887,6 +903,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -944,6 +961,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

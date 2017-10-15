@@ -9,10 +9,14 @@
 import Foundation
 
 final public class FeaturedAssembly {
+    //Dependencias
 	private let imageLoadingAssembly: ImageLoadingAssembly
+    private let detailAssembly: DetailAssembly
 
-	init(imageLoadingAssembly: ImageLoadingAssembly) {
+    //Inyección de dependencias or constructor
+    init(imageLoadingAssembly: ImageLoadingAssembly, detailAssembly: DetailAssembly) {
 		self.imageLoadingAssembly = imageLoadingAssembly
+        self.detailAssembly = detailAssembly
 	}
 
 	public func viewController() -> UIViewController {
@@ -21,7 +25,7 @@ final public class FeaturedAssembly {
 	}
 
 	func presenter() -> FeaturedPresenter {
-		return FeaturedPresenter()
+        return FeaturedPresenter(detailNavigator: detailAssembly.detailNavigator())
 	}
 
 	func cardPresenter() -> CardPresenter {

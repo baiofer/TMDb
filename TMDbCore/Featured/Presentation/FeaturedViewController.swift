@@ -49,7 +49,7 @@ class FeaturedViewController: UIViewController {
 }
 
 extension FeaturedViewController: FeaturedView {
-	func setShowsHeaderTitle(_ title: String) {
+    func setShowsHeaderTitle(_ title: String) {
 		showsLabel.text = title
 	}
 

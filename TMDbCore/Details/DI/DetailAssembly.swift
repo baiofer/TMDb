@@ -9,10 +9,14 @@
 import Foundation
 
 final class DetailAssembly {
+    //Dependencias
 	private let imageLoadingAssembly: ImageLoadingAssembly
-
-	init(imageLoadingAssembly: ImageLoadingAssembly) {
+    private let navigationController: UINavigationController
+    
+    //Inyección de dependencias por constructor
+    init(imageLoadingAssembly: ImageLoadingAssembly, navigationController: UINavigationController) {
 		self.imageLoadingAssembly = imageLoadingAssembly
+        self.navigationController = navigationController
 	}
 
 	func detailHeaderPresenter() -> DetailHeaderPresenter {
@@ -22,4 +26,25 @@ final class DetailAssembly {
 	func posterStripPresenter() -> PosterStripPresenter {
 		return PosterStripPresenter(imageRepository: imageLoadingAssembly.imageRepository)
 	}
+    
+    func detailNavigator() -> DetailNavigator {
+        return PhoneDetailNavigator(navigationController: navigationController,
+                                    viewControllerProvider: self)
+    }
+}
+
+extension DetailAssembly: DetailViewControllerProvider {
+    //FIXME: Temporary
+    private class DummyDetailPresenter: DetailPresenter {
+        var view: DetailView?
+        func didLoad() {}
+        func didSelect(item: PosterStripItem) {}
+    }
+    func detailViewController(identifier: Int64, mediaType: MediaType) -> UIViewController {
+        return DetailViewController(presenter: DummyDetailPresenter(),
+                                    headerPresenter: detailHeaderPresenter(),
+                                    posterStripPresenter: posterStripPresenter())
+    }
+    
+    
 }

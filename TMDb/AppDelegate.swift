@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	let appAssembly = AppAssembly()
 
-
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		
         let ininitialViewController = appAssembly.coreAssembly.featuredAssembly.viewController()
