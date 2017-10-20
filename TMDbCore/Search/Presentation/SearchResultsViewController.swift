@@ -9,6 +9,11 @@
 import RxSwift
 import RxCocoa
 
+//Definimos el protocolo de creacción de un SearchResultsViewController
+protocol SearchResultsViewControllerProvider: class  {
+    func searchResultsViewController() -> SearchResultsViewController
+}
+
 /// Displays search results
 class SearchResultsViewController: UITableViewController {
 

@@ -11,6 +11,14 @@ import RxSwift
 /// Presents search results
 final class SearchResultsPresenter {
 
+    //Dependencias
+    private let detailNavigator: DetailNavigator
+    
+    //Inyección por constructor
+    init(detailNavigator: DetailNavigator) {
+        self.detailNavigator = detailNavigator
+    }
+    
 	/// The search query
 	let query = Variable("")
 
@@ -26,6 +34,13 @@ final class SearchResultsPresenter {
 
 	/// Called by the view when the user selects a search result
 	func didSelect(searchResult: SearchResult) {
-		// TODO: implement
-	}
+        switch searchResult {
+        case .movie(let movie):
+            detailNavigator.showDetail(withIdentifier: movie.identifier, mediaType: .movie)
+        case .show(let show):
+            detailNavigator.showDetail(withIdentifier: show.identifier, mediaType: .show)
+        case .person(let person):
+            detailNavigator.showDetail(withIdentifier: person.identifier, mediaType: .person)
+        }
+    }
 }

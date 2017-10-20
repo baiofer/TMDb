@@ -12,16 +12,21 @@ final public class FeaturedAssembly {
     //Dependencias
 	private let imageLoadingAssembly: ImageLoadingAssembly
     private let detailAssembly: DetailAssembly
+    private let searchAssembly: SearchAssembly
 
     //Inyección de dependencias or constructor
-    init(imageLoadingAssembly: ImageLoadingAssembly, detailAssembly: DetailAssembly) {
+    init(imageLoadingAssembly: ImageLoadingAssembly,
+         detailAssembly: DetailAssembly,
+         searchAssembly: SearchAssembly) {
 		self.imageLoadingAssembly = imageLoadingAssembly
         self.detailAssembly = detailAssembly
+        self.searchAssembly = searchAssembly
 	}
 
 	public func viewController() -> UIViewController {
 		return FeaturedViewController(presenter: presenter(),
-		                              cardPresenter: cardPresenter())
+		                              cardPresenter: cardPresenter(),
+                                      searchNavigator: searchAssembly.searchNavigator())
 	}
 
 	func presenter() -> FeaturedPresenter {
