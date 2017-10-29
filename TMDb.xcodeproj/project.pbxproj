@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		024BA0381FA3AE390073206B /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024BA0371FA3AE390073206B /* Page.swift */; };
+		02591FDA1FA5F54F0081C55A /* FeaturedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02591FD91FA5F54F0081C55A /* FeaturedRepository.swift */; };
 		028192DB1F93BC23003D54E7 /* DetailNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028192DA1F93BC23003D54E7 /* DetailNavigator.swift */; };
 		028192DD1F93C177003D54E7 /* PhoneDetailNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028192DC1F93C177003D54E7 /* PhoneDetailNavigator.swift */; };
 		02A281C41F99D8ED0065ABBF /* SearchNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A281C31F99D8ED0065ABBF /* SearchNavigator.swift */; };
@@ -148,6 +150,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		024BA0371FA3AE390073206B /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		02591FD91FA5F54F0081C55A /* FeaturedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedRepository.swift; sourceTree = "<group>"; };
 		028192DA1F93BC23003D54E7 /* DetailNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNavigator.swift; sourceTree = "<group>"; };
 		028192DC1F93C177003D54E7 /* PhoneDetailNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneDetailNavigator.swift; sourceTree = "<group>"; };
 		02A281C31F99D8ED0065ABBF /* SearchNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavigator.swift; sourceTree = "<group>"; };
@@ -271,6 +275,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		024BA0361FA3AE1C0073206B /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				024BA0371FA3AE390073206B /* Page.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		02591FD81FA5F5330081C55A /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				02591FD91FA5F54F0081C55A /* FeaturedRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		028192D91F93B9F7003D54E7 /* Navigators */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,6 +555,8 @@
 		99C5C90B1F7B86CD0038688F /* Featured */ = {
 			isa = PBXGroup;
 			children = (
+				02591FD81FA5F5330081C55A /* Repositories */,
+				024BA0361FA3AE1C0073206B /* Domain */,
 				99C5C90E1F7B86F90038688F /* DI */,
 				99C5C90D1F7B86F20038688F /* Presentation */,
 			);
@@ -855,6 +877,8 @@
 				997A441F1F7AA4110094E928 /* ReusableView.swift in Sources */,
 				997A44281F7AAB350094E928 /* WebServiceAssembly.swift in Sources */,
 				992D27BB1F7FFD5E00BA79DE /* DetailSection.swift in Sources */,
+				024BA0381FA3AE390073206B /* Page.swift in Sources */,
+				02591FDA1FA5F54F0081C55A /* FeaturedRepository.swift in Sources */,
 				99A4653A1F7CE21C007F3B5B /* PosterStripCell.swift in Sources */,
 				02A281C41F99D8ED0065ABBF /* SearchNavigator.swift in Sources */,
 				02A281C61F99DE9A0065ABBF /* PhoneSearchNavigator.swift in Sources */,

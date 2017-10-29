@@ -20,20 +20,23 @@ protocol FeaturedView: class {
 final class FeaturedPresenter {
     //Dependencias
     private let detailNavigator: DetailNavigator
+    private let repository: FeaturedRepositoryProtocol
     
-    //Inyección de la dependencia por constructor
-    init(detailNavigator: DetailNavigator) {
+    //Inyección de las dependencias por constructor
+    init(detailNavigator: DetailNavigator, repository: FeaturedRepositoryProtocol) {
         self.detailNavigator = detailNavigator
+        self.repository = repository
     }
     
 	weak var view: FeaturedView?
+    private let disposeBag = DisposeBag()
 
 	func didLoad() {
         view?.title = (NSLocalizedString("Featured", comment: ""))
 		view?.setShowsHeaderTitle(NSLocalizedString("ON TV", comment: ""))
 		view?.setMoviesHeaderTitle(NSLocalizedString("IN THEATERS", comment: ""))
 
-		addFakeContent()
+		loadContents()
 	}
 
 	func didSelect(show: Show) {
@@ -46,39 +49,19 @@ final class FeaturedPresenter {
 }
 
 private extension FeaturedPresenter {
-	func addFakeContent() {
-		let shows = [
-			Show(identifier: 1413,
-			     title: "American Horror Story",
-			     posterPath: "/gwSzP1cJL2HsBmGStN2vOg3d4Qd.jpg",
-			     backdropPath: "/anDMMvgVV6pTNSxhHgiDPUjc4pH.jpg",
-			     firstAirDate: Date(timeIntervalSince1970: 1274905532),
-			     genreIdentifiers: [18, 9648])
-		]
-
-		view?.update(with: shows)
-
-		let movies = [
-			Movie(identifier: 330459,
-			      title: "Rogue One: A Star Wars Story",
-			      posterPath: "/qjiskwlV1qQzRCjpV0cL9pEMF9a.jpg",
-			      backdropPath: "/tZjVVIYXACV4IIIhXeIM59ytqwS.jpg",
-			      releaseDate: Date(timeIntervalSince1970: 1474905532),
-			      genreIdentifiers: [28, 12, 878]),
-			Movie(identifier: 297762,
-			      title: "Wonder Woman",
-			      posterPath: "/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg",
-			      backdropPath: "/hA5oCgvgCxj5MEWcLpjXXTwEANF.jpg",
-			      releaseDate: Date(timeIntervalSince1970: 1574905532),
-			      genreIdentifiers: [28, 12, 14, 878]),
-			Movie(identifier: 324852,
-			      title: "Despicable Me 3",
-			      posterPath: "/5qcUGqWoWhEsoQwNUrtf3y3fcWn.jpg",
-			      backdropPath: "/7YoKt3hzTg38iPlpCumqcriaNTV.jpg",
-			      releaseDate: Date(timeIntervalSince1970: 1564905532),
-			      genreIdentifiers: [12, 16, 35]),
-		]
-
-		view?.update(with: movies)
-	}
+    func loadContents() {
+        let showsOnTheAir = repository.showsOnTheAir().map { $0.prefix(3) }
+        let moviesNowPlaying = repository.moviesNowPlaying(region: Locale.current.regionCode!)
+            .map { $0.prefix(3) }
+        Observable.combineLatest(showsOnTheAir, moviesNowPlaying) { shows, movies in
+            return (shows, movies)
+        }
+        .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] shows, movies in
+                guard let `self` = self else { return }
+                self.view?.update(with: Array(shows))
+                self.view?.update(with: Array(movies))
+        })
+        .disposed(by: disposeBag)
+    }
 }

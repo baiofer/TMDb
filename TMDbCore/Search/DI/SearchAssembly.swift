@@ -12,11 +12,13 @@ final class SearchAssembly {
     //Dependencias
 	private let imageLoadingAssembly: ImageLoadingAssembly
     private let detailAssembly: DetailAssembly
+    private let webServiceAssembly: WebServiceAssembly
 
     //Inyectamos las dependencias por constructor
-    init(imageLoadingAssembly: ImageLoadingAssembly, detailAssembly: DetailAssembly) {
+    init(imageLoadingAssembly: ImageLoadingAssembly, detailAssembly: DetailAssembly, webServiceAssembly: WebServiceAssembly) {
 		self.imageLoadingAssembly = imageLoadingAssembly
         self.detailAssembly = detailAssembly
+        self.webServiceAssembly = webServiceAssembly
 	}
     
     func searchNavigator() -> SearchNavigator {
@@ -28,7 +30,7 @@ final class SearchAssembly {
 	}
 
 	func resultPresenter() -> SearchResultPresenter {
-		return SearchResultPresenter(imageRepository: imageLoadingAssembly.imageRepository)
+        return SearchResultPresenter(imageRepository: imageLoadingAssembly.imageRepository, dateFormatter: webServiceAssembly.dateFormatter)
 	}
 }
 
