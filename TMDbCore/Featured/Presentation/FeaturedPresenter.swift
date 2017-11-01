@@ -15,6 +15,7 @@ protocol FeaturedView: class {
 
 	func update(with shows: [Show])
 	func update(with movies: [Movie])
+    func setLoading(_ loading: Bool)
 }
 
 final class FeaturedPresenter {
@@ -36,6 +37,7 @@ final class FeaturedPresenter {
 		view?.setShowsHeaderTitle(NSLocalizedString("ON TV", comment: ""))
 		view?.setMoviesHeaderTitle(NSLocalizedString("IN THEATERS", comment: ""))
 
+        view?.setLoading(true)
 		loadContents()
 	}
 
@@ -50,9 +52,9 @@ final class FeaturedPresenter {
 
 private extension FeaturedPresenter {
     func loadContents() {
-        let showsOnTheAir = repository.showsOnTheAir().map { $0.prefix(3) }
+        let showsOnTheAir = repository.showsOnTheAir().map { $0.prefix(15) }
         let moviesNowPlaying = repository.moviesNowPlaying(region: Locale.current.regionCode!)
-            .map { $0.prefix(3) }
+            .map { $0.prefix(15) }
         Observable.combineLatest(showsOnTheAir, moviesNowPlaying) { shows, movies in
             return (shows, movies)
         }
@@ -61,7 +63,9 @@ private extension FeaturedPresenter {
                 guard let `self` = self else { return }
                 self.view?.update(with: Array(shows))
                 self.view?.update(with: Array(movies))
-        })
+            },onDisposed: { [weak self] in
+                    self?.view?.setLoading(false)
+            })
         .disposed(by: disposeBag)
     }
 }

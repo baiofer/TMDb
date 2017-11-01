@@ -12,11 +12,13 @@ final class DetailAssembly {
     //Dependencias
 	private let imageLoadingAssembly: ImageLoadingAssembly
     private let navigationController: UINavigationController
+    private let webServiceAssembly: WebServiceAssembly
     
     //Inyección de dependencias por constructor
-    init(imageLoadingAssembly: ImageLoadingAssembly, navigationController: UINavigationController) {
+    init(imageLoadingAssembly: ImageLoadingAssembly, navigationController: UINavigationController, webServiceAssembly: WebServiceAssembly) {
 		self.imageLoadingAssembly = imageLoadingAssembly
         self.navigationController = navigationController
+        self.webServiceAssembly = webServiceAssembly
 	}
 
 	func detailHeaderPresenter() -> DetailHeaderPresenter {
@@ -31,6 +33,39 @@ final class DetailAssembly {
         return PhoneDetailNavigator(navigationController: navigationController,
                                     viewControllerProvider: self)
     }
+    
+    func movieRepository() -> MovieRepositoryProtocol {
+        return MovieRepository(webService: webServiceAssembly.webService)
+    }
+    
+    func showRepository() -> ShowRepositoryProtocol {
+        return ShowRepository(webService: webServiceAssembly.webService)
+    }
+    
+    func personRepository() -> PersonRepositoryProtocol {
+        return PersonRepository(webService: webServiceAssembly.webService)
+    }
+    
+    func moviePresenter(identifier: Int64) -> DetailPresenter {
+        return MoviePresenter(repository: movieRepository(),
+                              dateFormatter: webServiceAssembly.dateFormatter,
+                              identifier: identifier,
+                              detailNavigator: detailNavigator())
+    }
+    
+    func showPresenter(identifier: Int64) -> DetailPresenter {
+        return ShowPresenter(repository: showRepository(),
+                              dateFormatter: webServiceAssembly.dateFormatter,
+                              identifier: identifier,
+                              detailNavigator: detailNavigator())
+    }
+    
+    func personPresenter(identifier: Int64) -> DetailPresenter {
+        return PersonPresenter(repository: personRepository(),
+                              dateFormatter: webServiceAssembly.dateFormatter,
+                              identifier: identifier,
+                              detailNavigator: detailNavigator())
+    }
 }
 
 extension DetailAssembly: DetailViewControllerProvider {
@@ -41,7 +76,17 @@ extension DetailAssembly: DetailViewControllerProvider {
         func didSelect(item: PosterStripItem) {}
     }
     func detailViewController(identifier: Int64, mediaType: MediaType) -> UIViewController {
-        return DetailViewController(presenter: DummyDetailPresenter(),
+        let presenter: DetailPresenter
+        
+        switch mediaType {
+        case .movie:
+            presenter = moviePresenter(identifier: identifier)
+        case .show:
+            presenter = showPresenter(identifier: identifier)
+        case .person:
+            presenter = personPresenter(identifier: identifier)
+        }
+        return DetailViewController(presenter: presenter,
                                     headerPresenter: detailHeaderPresenter(),
                                     posterStripPresenter: posterStripPresenter())
     }

@@ -19,7 +19,10 @@ class FeaturedViewController: UIViewController {
 	@IBOutlet private var moviesLabel: UILabel!
 	@IBOutlet private var moviesStackView: UIStackView!
 
-	// MARK: - Properties
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!
+    
+    // MARK: - Properties
 
     //Dependencias
 	private let presenter: FeaturedPresenter
@@ -99,4 +102,17 @@ extension FeaturedViewController: FeaturedView {
 
 		cardViews.forEach { moviesStackView.addArrangedSubview($0) }
 	}
+    
+    func setLoading(_ loading: Bool) {
+        if loading {
+            scrollView.isHidden = true
+            loadingView.startAnimating()
+        } else {
+            scrollView.isHidden = false
+            loadingView.stopAnimating()
+        }
+    }
 }
+
+
+

@@ -22,7 +22,7 @@ extension SearchResult: Decodable {
 	init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		let mediaType = try container.decode(String.self, forKey: .mediaType)
-
+        
 		switch mediaType {
 		case "movie":
 			self = try .movie(Movie(from: decoder))
