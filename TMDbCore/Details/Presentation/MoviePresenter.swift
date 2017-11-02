@@ -59,7 +59,7 @@ final class MoviePresenter: DetailPresenter {
         }
         
         //Agrego el Cast
-        let items = movie.credits?.cast.map { PosterStripItem(castMember: $0) }
+        let items = movie.credits?.cast.map { PosterStripItem(castMember: $0, media: "person") }
         
         if let items = items {
             detailSections.append(.posterStrip(title: NSLocalizedString("Cast", comment: ""), items: items))

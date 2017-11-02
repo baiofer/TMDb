@@ -42,6 +42,7 @@ final class PersonPresenter: DetailPresenter {
     }
     
     func didSelect(item: PosterStripItem) {
+        print(item)
         detailNavigator.showDetail(withIdentifier: item.identifier, mediaType: item.mediaType)
     }
     
@@ -58,14 +59,12 @@ final class PersonPresenter: DetailPresenter {
             }
         }
         
-        //Agrego el Cast
-        /*
-        let items = person.credits?.cast.map { PosterStripItem(castMember: $0) }
+        //Agrego el Movies
+        let items = person.creditsMovie?.cast.map { PosterStripItem(castMember: convertCreditsMovieToCreditsCast(creditsMovie: $0), media: "movie")}
         
         if let items = items {
-                detailSections.append(.posterStrip(title: NSLocalizedString("Cast", comment: ""), items: items))
+                detailSections.append(.posterStrip(title: NSLocalizedString("Movies", comment: ""), items: items))
         }
-        */
         return detailSections
     }
 }

@@ -85,7 +85,7 @@ private extension Endpoint {
         case .show:
             return ["append_to_response" : "credits"]
         case .person:
-            return ["append_to_response" : "tagged_images"]
+            return ["append_to_response" : "movie_credits,tagged_images"]
         }
     }
 }

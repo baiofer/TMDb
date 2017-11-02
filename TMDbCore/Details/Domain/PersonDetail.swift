@@ -16,6 +16,7 @@ struct PersonDetail: Decodable {
     let birthday: String?
     let deathday: String?
     let title: String
+    let creditsMovie: CreditsMovie?
     
     private enum CodingKeys: String, CodingKey {
         case taggedImages = "tagged_images"
@@ -25,5 +26,6 @@ struct PersonDetail: Decodable {
         case birthday
         case deathday
         case title = "name"
+        case creditsMovie = "movie_credits"
     }
 }

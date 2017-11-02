@@ -3,7 +3,7 @@
 //  TMDbCore
 //
 //  Created by Fernando Jarilla on 2/11/17.
-//  Copyright © 2017 Guille Gonzalez. All rights reserved.
+//  Copyright © 2017 Fernando Jarilla. All rights reserved.
 //
 
 import Foundation

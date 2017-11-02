@@ -38,7 +38,7 @@ final internal class WebService {
 		let request = endpoint.request(with: baseURL, adding: configuration.parameters)
 
 		return session.rx.data(request: request)
-			.map { try decoder.decode(T.self, from: $0) }
+			.map {try decoder.decode(T.self, from: $0) }
 			.catchError { error in
 				guard let webServiceError = error as? WebServiceError else {
 					throw error
