@@ -26,7 +26,8 @@ final internal class ImageRepository: ImageRepositoryProtocol {
 		self.baseURL = webService.load(Configuration.self, from: .configuration)
 			.catchErrorJustReturn(.default)
 			.map { $0.images.baseURL }
-			.shareReplay(1)
+			//.shareReplay(1)
+            .share(replay: 1)
 		self.imageManager = imageManager
 	}
 

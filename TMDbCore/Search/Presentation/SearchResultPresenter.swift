@@ -93,7 +93,8 @@ private extension SearchResultPresenter {
 
 		imageRepository.image(at: path, size: .w154)
 			.observeOn(MainScheduler.instance)
-			.bind(to: cell.posterView.rx.image(transitionType: kCATransitionFade))
+			//.bind(to: cell.posterView.rx.image(transitionType: kCATransitionFade))
+            .bind(to: cell.posterView.rx.image)
 			.disposed(by: cell.disposeBag)
 	}
 }
