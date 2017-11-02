@@ -32,7 +32,6 @@ final class SearchResultsPresenter {
         .flatMapLatest { [weak self] query -> Observable<[SearchResult]> in
             guard
                 let `self` = self,
-                //query.characters.count >= 2 else { return Observable.just([]) }
                 query.count >= 2 else { return Observable.just([]) }
             return self.repository.searchResults(withQuery: query, page: 1, adult: true)
         }

@@ -52,7 +52,6 @@ private extension CardPresenter {
 
 		imageRepository.image(at: path, size: .w780)
 			.observeOn(MainScheduler.instance)
-			//.bind(to: cardView.backdropView.rx.image(transitionType: kCATransitionFade))
             .bind(to: cardView.backdropView.rx.image)
 			.disposed(by: cardView.disposeBag)
 	}
