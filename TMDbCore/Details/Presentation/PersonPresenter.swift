@@ -55,7 +55,7 @@ final class PersonPresenter: DetailPresenter {
         //Agrego el overview
         if let overview = person.overview {
             if overview != "" {
-                detailSections.append(.about(title: NSLocalizedString("Overview", comment: ""), detail: overview))
+                detailSections.append(.about(title: NSLocalizedString("Biography", comment: ""), detail: overview))
             }
         }
         
